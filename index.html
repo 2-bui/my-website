@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bui wish ur merry christmas ⋆⁺₊❅</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .touch-animation, .click-animation, .shark-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .touch-animation {
+            background: url('touch.gif') center/contain no-repeat;
+        }
+        .click-animation {
+            background: url('click.gif') center/contain no-repeat;
+            display: none;
+        }
+        .shark-animation {
+            background: white;
+            display: none;
+        }
+        .shark {
+            background: url('shark.gif') center/contain no-repeat;
+            width: 70%;
+            height: 70%;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="touch-animation" id="touchAnimation"></div>
+    <div class="click-animation" id="clickAnimation"></div>
+    <div class="shark-animation" id="sharkAnimation">
+        <div class="shark"></div>
+        <audio id="bgMusic" loop>
+            <source src="background.mp4" type="audio/mp4">
+        </audio>
+    </div>
+
+    <script>
+        const touchAnimation = document.getElementById('touchAnimation');
+        const clickAnimation = document.getElementById('clickAnimation');
+        const sharkAnimation = document.getElementById('sharkAnimation');
+        const bgMusic = document.getElementById('bgMusic');
+
+        function playMusic() {
+            bgMusic.play();
+        }
+
+        function showClickEffect() {
+            touchAnimation.style.display = 'none';
+            clickAnimation.style.display = 'flex';
+            setTimeout(() => {
+                clickAnimation.style.display = 'none';
+                sharkAnimation.style.display = 'flex';
+                document.body.style.backgroundColor = 'white';
+                playMusic();
+            }, 1000); // Adjust duration to match click.gif animation time
+        }
+
+        touchAnimation.addEventListener('click', showClickEffect);
+        touchAnimation.addEventListener('touchstart', showClickEffect);
+    </script>
+</body>
+</html>
